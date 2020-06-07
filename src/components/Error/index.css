@@ -1,0 +1,13 @@
+.error {
+  right: 2rem;
+}
+
+.error-text {
+  color: var(--red-color);
+  margin-right: 0.5rem;
+}
+
+.error img {
+  width: 1rem;
+  height: 1rem;
+}

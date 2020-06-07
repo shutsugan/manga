@@ -10,11 +10,13 @@
     "apollo-server-lambda": "^2.14.1",
     "axios": "^0.19.2",
     "cron": "^1.8.2",
+    "date-fns": "^2.14.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.0.0",
     "mongoose": "^5.9.16",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },
   "scripts": {

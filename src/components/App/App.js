@@ -1,19 +1,30 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export const GET_HELLO = gql`
-  query GetHello {
-    hello
-  }
-`;
+import Header from "../Header";
+
+const MangaPage = lazy(() => import("../../pages/MangaPage"));
+const ChapterPage = lazy(() => import("../../pages/ChapterPage"));
 
 const App = () => {
-  const { data, loading, error } = useQuery(GET_HELLO);
-
-  if (loading) return "Loading...";
-  if (error) return "Error...";
-
-  return <div className="App">{data.hello}</div>;
+  return (
+    <div className="App">
+      <Router>
+        <Header />
+        <Suspense fallback={""}>
+          <Switch>
+            {/* <Route exact path="/" /> */}
+            <Route exact path="/manga/:mangaId" component={MangaPage} />
+            <Route
+              exact
+              path="/manga/:mangaName/:mangaId/chapter/:chapterId"
+              component={ChapterPage}
+            />
+          </Switch>
+        </Suspense>
+      </Router>
+    </div>
+  );
 };
 
 export default App;

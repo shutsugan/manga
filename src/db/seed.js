@@ -12,7 +12,7 @@ const seed = () => {
 };
 
 const seedDb = async () => {
-  const listUri = "https://www.mangaeden.com/api/list/1/";
+  const listUri = "https://www.mangaeden.com/api/list/0/";
   const { data } = await axios.get(listUri);
 
   data.manga.forEach((item) => {

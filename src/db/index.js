@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 
 import Manga, { updateManga } from "./models/manga";
-import Chapter, { updateChapter } from "./models/chapter";
+import Chapter, { createChapter, updateChapter } from "./models/chapter";
 import seed from "../db/seed";
 
 config();
@@ -22,4 +22,10 @@ export const startDb = () => {
   seed();
 };
 
-export const models = { Manga, Chapter, updateManga, updateChapter };
+export const models = {
+  Manga,
+  Chapter,
+  updateManga,
+  createChapter,
+  updateChapter,
+};

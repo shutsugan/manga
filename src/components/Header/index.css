@@ -1,0 +1,18 @@
+.header {
+  top: 0;
+  border-bottom: solid 1px var(--gray-color);
+  background: var(--white-color);
+  z-index: 10;
+}
+
+.header-container {
+  max-width: 64rem;
+  height: 4rem;
+  padding: 0 1rem;
+}
+
+.header-logo {
+  font-weight: 900;
+  text-decoration: none;
+  color: var(--black-color);
+}

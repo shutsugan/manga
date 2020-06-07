@@ -1,7 +1,7 @@
 export default {
-  mangaListBy: async (_, { param = {}, skip = 0, limit = 20 }, { models }) => {
+  mangaListBy: async (_, { param = {} }, { models }) => {
     const { Manga } = models;
-    const { key, value } = param;
+    const { key, value, skip = 0, limit = 20 } = param;
     const reValue = new RegExp(value, "igm");
     const option = Object.keys(param).length ? { [key]: reValue } : {};
 
@@ -28,9 +28,9 @@ export default {
   },
 
   chapter: async (_, { chapterId }, { models }) => {
-    const { Chapter, updateChapter } = models;
+    const { Chapter, createChapter } = models;
 
-    await updateChapter(chapterId);
+    await createChapter(chapterId);
     const chapter = await Chapter.findOne({ chapterId }).exec();
 
     if (!chapter) throw new Error("chapter do not exits");

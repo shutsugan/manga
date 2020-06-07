@@ -1,0 +1,38 @@
+.chapter-page {
+  background: var(--light-black-color);
+}
+
+.chapter-nav-wrapper {
+  top: 65px;
+  border-bottom: solid 1px var(--gray-color);
+  background: var(--white-color);
+}
+
+.chapter-nav {
+  height: 64px;
+  max-width: 64rem;
+}
+
+.chapter-prev,
+.chapter-next {
+  color: var(--black-color);
+  text-decoration: none;
+  width: auto;
+  height: 2rem;
+}
+
+.chapter-icon {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 1rem;
+}
+
+.chapter-list {
+  max-width: 64rem;
+  padding: 0 1rem;
+}
+
+.chapter-image {
+  width: 100%;
+  min-height: 10rem;
+}

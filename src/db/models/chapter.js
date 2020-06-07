@@ -16,14 +16,21 @@ export const chapterSchema = mongoose.Schema({
 
 const Chapter = mongoose.model("Chapter", chapterSchema);
 
-export const createChapter = async (chapterObject) => {
+export const createChapter = async (chapterId) => {
   try {
-    const { chapterId } = chapterObject;
     const prevChapter = await Chapter.findOne({ chapterId }).exec();
 
     if (prevChapter) return;
 
-    const chapter = new Chapter(chapterObject);
+    const chapterUri = "hhttps://www.mangaeden.com/api/chapter/";
+    const { data } = await axios.get(`${chapterUri}${chapterId}`);
+
+    const chapterImages = data.images.map((image) => ({
+      imageNumber: image[0],
+      chapterImage: image[1],
+    }));
+
+    const chapter = new Chapter({ chapterId, chapterImages });
     await chapter.save();
   } catch (err) {
     throw new Error("Could not create the chapter");
@@ -32,6 +39,9 @@ export const createChapter = async (chapterObject) => {
 
 export const updateChapter = async (chapterId) => {
   try {
+    const chapter = await Chapter.findOne({ chapterId }).exec();
+    if (chapter && chapter.chapterImages.length) return;
+
     const chapterUri = "hhttps://www.mangaeden.com/api/chapter/";
     const { data } = await axios.get(`${chapterUri}${chapterId}`);
 

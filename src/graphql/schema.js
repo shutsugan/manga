@@ -2,14 +2,16 @@ import { gql } from "apollo-server-lambda";
 
 const typeDefs = gql`
   type Query {
-    mangaListBy(param: Option, skip: Int, limit: Int): List!
-    manga(mangaId: ID!): Manga!
-    chapter(chapterId: ID!): Chapter!
+    mangaListBy(param: Option): List!
+    manga(mangaId: String!): Manga!
+    chapter(chapterId: String!): Chapter!
   }
 
   input Option {
     key: String
     value: String
+    skip: Int
+    limit: Int
   }
 
   type List {

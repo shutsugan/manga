@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import axios from "axios";
 
-import { createChapter, chapterSchema } from "./chapter";
+import { chapterSchema } from "./chapter";
 
 const SUSPENDED = 0;
 const ON_GOING = 1;
@@ -54,21 +54,21 @@ export const createManga = async (mangaObject) => {
 
 export const updateManga = async (mangaId) => {
   try {
+    const manga = await Manga.findOne({ mangaId }).exec();
+    if (manga && manga.description) return;
+
     const mangaUri = "https://www.mangaeden.com/api/manga/";
     const { data } = await axios.get(`${mangaUri}${mangaId}`);
 
     const chapters = data.chapters.map((chapter) => {
       const [chapterNumber, chapterDate, chapterTitle, chapterId] = chapter;
-      const chapterObject = {
+
+      return {
         chapterNumber,
         chapterDate,
         chapterTitle,
         chapterId,
       };
-
-      createChapter(chapterObject);
-
-      return chapterObject;
     });
 
     await Manga.updateOne({ mangaId }, { $set: { ...data, chapters } }).exec();
