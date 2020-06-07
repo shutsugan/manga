@@ -8,8 +8,11 @@ const LazyImage = ({ src, alt, className }) => {
   useEffect(() => {
     let observer;
     let didCancel = false;
+    let current;
 
     if (imageRef.current) {
+      current = imageRef.current;
+
       if (IntersectionObserver) {
         observer = new IntersectionObserver(
           (entries) => {
@@ -27,7 +30,7 @@ const LazyImage = ({ src, alt, className }) => {
             rootMargin: "75%",
           }
         );
-        observer.observe(imageRef.current);
+        observer.observe(current);
       } else {
         setImageSrc(src);
       }
@@ -35,7 +38,7 @@ const LazyImage = ({ src, alt, className }) => {
     return () => {
       didCancel = true;
       if (observer && observer.unobserve) {
-        observer.unobserve(imageRef.current);
+        observer.unobserve(current);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
