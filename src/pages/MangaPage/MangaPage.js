@@ -4,6 +4,7 @@ import { gql, useQuery } from "@apollo/client";
 
 import MangaInfo from "./MangaInfo";
 import MangaChapterList from "./MangaChapterList";
+import ErrorPage from "../ErrorPage";
 
 const GET_MANGA = gql`
   query GetManga($mangaId: String!) {
@@ -37,7 +38,7 @@ const MangaPage = () => {
     variables: { mangaId },
   });
 
-  if (error) return "error...";
+  if (error) return <ErrorPage message="Manga page failed loading" />;
 
   return (
     <div className="manga-page">

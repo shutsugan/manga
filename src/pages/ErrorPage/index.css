@@ -1,0 +1,9 @@
+.error-page {
+  background: var(--white-color);
+}
+
+.error-message {
+  font-size: 0.9rem;
+  color: var(--dark-gray-color);
+  margin-right: 0.25rem;
+}

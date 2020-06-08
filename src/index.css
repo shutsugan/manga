@@ -55,7 +55,7 @@ img {
 }
 
 .h-screen {
-  height: 100vh;
+  height: calc(100vh - 4.1rem);
 }
 
 .flex {

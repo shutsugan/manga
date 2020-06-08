@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
+import ErrorPage from "../../pages/ErrorPage";
 import ShimmerLoader from "../../components/ShimmerLoader";
 import LazyImage from "../../components/LazyImage";
 import leftArrow from "../../svgs/arrow-left.svg";
@@ -63,8 +64,8 @@ const ChapterPage = () => {
     }
   }, [manga, chapterId]);
 
-  if (error) return "chapter error...";
-  if (manga.error) return "manga error...";
+  if (error || manga.error)
+    return <ErrorPage message="Chapter page failed loading" />;
 
   return (
     <div className="chapter-page w-full h-full flex flex-col center relative">
