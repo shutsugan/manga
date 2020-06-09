@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 import ErrorPage from "../../pages/ErrorPage";
@@ -21,9 +21,10 @@ const GET_CHAPTER = gql`
   }
 `;
 
-const GET_MANGA = gql`
-  query GetManga($mangaId: String!) {
-    manga(mangaId: $mangaId) {
+const GET_MANGA_BY_ALIAS = gql`
+  query GetManga($alias: String!) {
+    mangaByAlias(alias: $alias) {
+      mangaId
       chapters {
         chapterId
         chapterTitle
@@ -35,16 +36,18 @@ const GET_MANGA = gql`
 const ChapterPage = () => {
   const [prevChapter, setPrevChapter] = useState(null);
   const [nextChapter, setNextChapter] = useState(null);
-  const { chapterId, mangaId, mangaName } = useParams();
+  const { chapterId, alias } = useParams();
 
-  const manga = useQuery(GET_MANGA, { variables: { mangaId } });
+  const manga = useQuery(GET_MANGA_BY_ALIAS, { variables: { alias } });
+
   const { data, loading, error } = useQuery(GET_CHAPTER, {
     variables: { chapterId },
   });
 
   useEffect(() => {
-    if (manga.data?.manga?.chapters) {
-      const chapters = manga?.data?.manga.chapters;
+    const mangaByAlias = manga.data?.mangaByAlias;
+    if (mangaByAlias?.chapters) {
+      const chapters = mangaByAlias.chapters;
 
       chapters.forEach((chapter, index) => {
         if (chapter.chapterId === chapterId) {
@@ -68,8 +71,8 @@ const ChapterPage = () => {
     return <ErrorPage message="Chapter page failed loading" />;
 
   return (
-    <div className="chapter-page w-full h-full flex flex-col center relative">
-      <div className="chapter-nav-wrapper w-full flex center sticky">
+    <div className="chapter-page w-full h-full flex flex-col center">
+      <div className="chapter-nav-wrapper w-full flex center fixed">
         <div className="chapter-nav w-full flex item-center justify-between">
           {loading || manga.loading ? (
             <div className="w-full flex center">
@@ -79,7 +82,7 @@ const ChapterPage = () => {
             <>
               {prevChapter?.chapterId ? (
                 <a
-                  href={`/manga/${mangaName}/${mangaId}/chapter/${prevChapter.chapterId}`}
+                  href={`/manga/${alias}/chapter/${prevChapter.chapterId}`}
                   className="chapter-prev flex item-center"
                 >
                   <img
@@ -87,17 +90,27 @@ const ChapterPage = () => {
                     src={leftArrow}
                     alt="prev chapter"
                   />
-                  {prevChapter?.chapterTitle || "Previous chapter"}
+                  <span className="chapter-name">
+                    {prevChapter?.chapterTitle || "Previous chapter"}
+                  </span>
                 </a>
               ) : (
                 <div />
               )}
+              <a
+                href={`/manga/${manga.data?.mangaByAlias?.mangaId}`}
+                className="chapter-back"
+              >
+                Back To List
+              </a>
               {nextChapter?.chapterId && (
                 <a
-                  href={`/manga/${mangaName}/${mangaId}/chapter/${nextChapter.chapterId}`}
+                  href={`/manga/${alias}/chapter/${nextChapter.chapterId}`}
                   className="chapter-next flex item-center"
                 >
-                  {nextChapter?.chapterTitle || "Next chapter"}
+                  <span className="chapter-name">
+                    {nextChapter?.chapterTitle || "Next chapter"}
+                  </span>
                   <img
                     className="chapter-icon"
                     src={rightArrow}

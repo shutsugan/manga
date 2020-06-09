@@ -3,9 +3,10 @@
 }
 
 .chapter-nav-wrapper {
-  top: 65px;
+  top: 0px;
   border-bottom: solid 1px var(--gray-color);
   background: var(--white-color);
+  z-index: 20;
 }
 
 .chapter-nav {
@@ -15,6 +16,7 @@
 
 .chapter-prev,
 .chapter-next {
+  font-size: 0.8rem;
   color: var(--black-color);
   text-decoration: none;
   width: auto;
@@ -22,8 +24,8 @@
 }
 
 .chapter-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin: 0 1rem;
 }
 
@@ -35,4 +37,19 @@
 .chapter-image {
   width: 100%;
   min-height: 10rem;
+}
+
+.chapter-back {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--black-color);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .chapter-name {
+    display: none;
+  }
 }

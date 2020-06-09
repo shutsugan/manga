@@ -64,7 +64,7 @@ const MangaInfo = ({ manga, loading }) => {
   if (loading) return mangaLoading;
 
   const {
-    alias,
+    title,
     status,
     type,
     image,
@@ -79,14 +79,14 @@ const MangaInfo = ({ manga, loading }) => {
   return (
     <div className="manga-info w-full flex flex-col center">
       <h1 className="manga-title w-full margin-none flex item-center justify-between">
-        {alias}
+        {title}
         {status !== null && (
           <div className="manga-status manga-badge flex item-center">
             {getMangaStatus(status)}
           </div>
         )}
       </h1>
-      <div className="manga-info-wrapper w-full flex center">
+      <div className="manga-info-wrapper w-full flex">
         <div className="manga-info-left">
           {type !== null && (
             <a href={`/type/0`} className="manga-type manga-badge">
@@ -103,11 +103,11 @@ const MangaInfo = ({ manga, loading }) => {
             )}
           </div>
         </div>
-        <div className="manga-info-right flex flex-col">
+        <div className="manga-info-right w-full flex flex-col">
           {author && mangaSection("Author", author, "author")}
           {artist && mangaSection("Artist", artist, "artist")}
-          {released && mangaSection("Year of release", released, "release")}
-          {categories && mangaSection("Categories", categories, "category")}
+          {released && mangaSection("Year of release", released, "released")}
+          {categories && mangaSection("Categories", categories, "categories")}
           <div
             className="manga-description"
             dangerouslySetInnerHTML={{ __html: description && description }}

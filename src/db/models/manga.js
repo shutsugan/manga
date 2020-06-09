@@ -46,6 +46,7 @@ export const createManga = async (mangaObject) => {
     if (prevManga) return;
 
     const manga = new Manga(mangaObject);
+
     await manga.save();
   } catch (err) {
     throw new Error("Could not create the manga");
@@ -55,10 +56,11 @@ export const createManga = async (mangaObject) => {
 export const updateManga = async (mangaId) => {
   try {
     const manga = await Manga.findOne({ mangaId }).exec();
-    if (manga && manga.description) return;
 
     const mangaUri = "https://www.mangaeden.com/api/manga/";
     const { data } = await axios.get(`${mangaUri}${mangaId}`);
+
+    if (manga?.chapters?.length === data?.chapters?.length) return;
 
     const chapters = data.chapters.map((chapter) => {
       const [chapterNumber, chapterDate, chapterTitle, chapterId] = chapter;

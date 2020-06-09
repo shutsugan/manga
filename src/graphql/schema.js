@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Query {
     mangaListBy(param: Option): List!
     manga(mangaId: String!): Manga!
+    mangaByAlias(alias: String!): Manga!
     chapter(chapterId: String!): Chapter!
   }
 

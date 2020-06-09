@@ -10,6 +10,7 @@ const GET_MANGA = gql`
   query GetManga($mangaId: String!) {
     manga(mangaId: $mangaId) {
       image
+      title
       alias
       description
       artist
@@ -45,8 +46,7 @@ const MangaPage = () => {
       <MangaInfo loading={loading} manga={data?.manga} />
       <MangaChapterList
         loading={loading}
-        name={data?.manga?.alias}
-        mangaId={mangaId}
+        alias={data?.manga?.alias}
         chapters={data?.manga?.chapters}
       />
     </div>

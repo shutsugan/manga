@@ -27,6 +27,15 @@ export default {
     return manga;
   },
 
+  mangaByAlias: async (_, { alias }, { models }) => {
+    const { Manga } = models;
+    const manga = await Manga.findOne({ alias }).exec();
+
+    if (!manga) throw new Error("manga do not exits");
+
+    return manga;
+  },
+
   chapter: async (_, { chapterId }, { models }) => {
     const { Chapter, createChapter } = models;
 

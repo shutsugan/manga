@@ -17,7 +17,7 @@ const App = () => {
             <Route exact path="/manga/:mangaId" component={MangaPage} />
             <Route
               exact
-              path="/manga/:mangaName/:mangaId/chapter/:chapterId"
+              path="/manga/:alias/chapter/:chapterId"
               component={ChapterPage}
             />
           </Switch>

@@ -22,7 +22,7 @@ export const createChapter = async (chapterId) => {
 
     if (prevChapter) return;
 
-    const chapterUri = "hhttps://www.mangaeden.com/api/chapter/";
+    const chapterUri = "https://www.mangaeden.com/api/chapter/";
     const { data } = await axios.get(`${chapterUri}${chapterId}`);
 
     const chapterImages = data.images.map((image) => ({
@@ -34,25 +34,6 @@ export const createChapter = async (chapterId) => {
     await chapter.save();
   } catch (err) {
     throw new Error("Could not create the chapter");
-  }
-};
-
-export const updateChapter = async (chapterId) => {
-  try {
-    const chapter = await Chapter.findOne({ chapterId }).exec();
-    if (chapter && chapter.chapterImages.length) return;
-
-    const chapterUri = "hhttps://www.mangaeden.com/api/chapter/";
-    const { data } = await axios.get(`${chapterUri}${chapterId}`);
-
-    const chapterImages = data.images.map((image) => ({
-      imageNumber: image[0],
-      chapterImage: image[1],
-    }));
-
-    await Chapter.updateOne({ chapterId }, { $set: { chapterImages } }).exec();
-  } catch (err) {
-    throw new Error("Could not update the chapter");
   }
 };
 

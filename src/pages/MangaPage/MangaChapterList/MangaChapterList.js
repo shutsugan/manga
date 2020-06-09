@@ -5,7 +5,7 @@ import ShimmerLoader from "../../../components/ShimmerLoader";
 
 import "./index.css";
 
-const MangaChapterList = ({ loading, chapters, name, mangaId }) => {
+const MangaChapterList = ({ loading, chapters, alias }) => {
   if (loading) {
     return (
       <div className="chapter-list w-full flex center">
@@ -32,7 +32,7 @@ const MangaChapterList = ({ loading, chapters, name, mangaId }) => {
             >
               <div className="chapter-info flex item-center">
                 <a
-                  href={`/manga/${name}/${mangaId}/chapter/${chapterId}`}
+                  href={`/manga/${alias}/chapter/${chapterId}`}
                   className="chapter-href"
                 >
                   <span className="chapter-number">

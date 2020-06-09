@@ -87,6 +87,10 @@ img {
   justify-content: space-between;
 }
 
+.justify-event {
+  justify-content: space-evenly;
+}
+
 .sticky {
   position: sticky;
 }
@@ -97,6 +101,10 @@ img {
 
 .absolute {
   position: absolute;
+}
+
+.fixed {
+  position: fixed;
 }
 
 .scroll {
