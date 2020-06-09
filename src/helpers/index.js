@@ -10,8 +10,13 @@ export const getMangaType = (type = 0) => {
   return types[type];
 };
 
-export const normalizeParam = (param = "") =>
-  param
+export const normalizeParam = (param = "") => {
+  return param
     .toString()
     .toLowerCase()
     .replace(/[^a-zA-Z0-9]/g, "-");
+};
+
+export const cleanParam = (param = "") => {
+  return param.replace("-", " ");
+};

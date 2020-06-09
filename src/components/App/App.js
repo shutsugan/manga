@@ -5,6 +5,7 @@ import Header from "../Header";
 
 const MangaPage = lazy(() => import("../../pages/MangaPage"));
 const ChapterPage = lazy(() => import("../../pages/ChapterPage"));
+const MangaListPage = lazy(() => import("../../pages/MangaListPage"));
 
 const App = () => {
   return (
@@ -19,6 +20,11 @@ const App = () => {
               exact
               path="/manga/:alias/chapter/:chapterId"
               component={ChapterPage}
+            />
+            <Route
+              exact
+              path="/manga-by/:key/:value"
+              component={MangaListPage}
             />
           </Switch>
         </Suspense>

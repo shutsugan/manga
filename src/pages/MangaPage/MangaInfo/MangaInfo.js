@@ -2,6 +2,7 @@ import React from "react";
 
 import ShimmerLoader from "../../../components/ShimmerLoader";
 import { getMangaStatus, getMangaType, normalizeParam } from "../../../helpers";
+import { IMG_BASE_URL } from "../../../helpers/constants";
 
 import "./index.css";
 
@@ -31,7 +32,7 @@ const mangaSection = (title, content, path) => (
         </a>
       )
     ) : (
-      <p className="section-content">{content}</p>
+      <p className="section-content margin-none">{content}</p>
     )}
   </div>
 );
@@ -89,7 +90,7 @@ const MangaInfo = ({ manga, loading }) => {
       <div className="manga-info-wrapper w-full flex">
         <div className="manga-info-left">
           {type !== null && (
-            <a href={`/type/0`} className="manga-type manga-badge">
+            <a href={`/manga-by/type/0`} className="manga-type manga-badge">
               {getMangaType(type)}
             </a>
           )}
@@ -97,16 +98,16 @@ const MangaInfo = ({ manga, loading }) => {
             {image && (
               <img
                 referrerPolicy="no-referrer"
-                src={`https://cdn.mangaeden.com/mangasimg/${image}`}
+                src={`${IMG_BASE_URL}${image}`}
                 alt={aka && aka.map((name) => name).join(", ")}
               />
             )}
           </div>
         </div>
         <div className="manga-info-right w-full flex flex-col">
-          {author && mangaSection("Author", author, "author")}
-          {artist && mangaSection("Artist", artist, "artist")}
-          {released && mangaSection("Year of release", released, "released")}
+          {author && mangaSection("Author", author)}
+          {artist && mangaSection("Artist", artist)}
+          {released && mangaSection("Year of release", `${released}`)}
           {categories && mangaSection("Categories", categories, "categories")}
           <div
             className="manga-description"

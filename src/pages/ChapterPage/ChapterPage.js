@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 
 import ErrorPage from "../../pages/ErrorPage";
@@ -7,6 +7,7 @@ import ShimmerLoader from "../../components/ShimmerLoader";
 import LazyImage from "../../components/LazyImage";
 import leftArrow from "../../svgs/arrow-left.svg";
 import rightArrow from "../../svgs/arrow-right.svg";
+import { IMG_BASE_URL } from "../../helpers/constants";
 
 import "./index.css";
 
@@ -126,7 +127,7 @@ const ChapterPage = () => {
         {data?.chapter?.chapterImages.map(({ chapterImage }, index) => (
           <LazyImage
             className="chapter-image"
-            src={`https://cdn.mangaeden.com/mangasimg/${chapterImage}`}
+            src={`${IMG_BASE_URL}${chapterImage}`}
             alt={`chapter ${++index}`}
             key={chapterImage}
           />
