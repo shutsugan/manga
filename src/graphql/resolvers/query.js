@@ -3,7 +3,7 @@ export default {
     const { Manga } = models;
     const { key, value, skip = 0, limit = 20 } = param;
     const reValue = new RegExp(value, "igm");
-    const option = Object.keys(param).length ? { [key]: reValue } : {};
+    const option = key ? { [key]: reValue } : {};
 
     const count = await Manga.countDocuments(option);
     const list = await Manga.find(option, null, { skip, limit }).sort({

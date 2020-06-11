@@ -1,7 +1,17 @@
 .list-page {
+  background: var(--white-color);
+  border-bottom: solid 1px var(--gray-color);
+}
+
+.list-page-wrapper {
   max-width: 64rem;
   margin: auto;
   padding: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(10.75rem, 1fr));
   grid-gap: 1rem;
+}
+
+.last-card {
+  width: 10px;
+  height: 100px;
 }

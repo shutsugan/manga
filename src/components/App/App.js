@@ -14,7 +14,7 @@ const App = () => {
         <Header />
         <Suspense fallback={""}>
           <Switch>
-            {/* <Route exact path="/" /> */}
+            <Route exact path="/" component={MangaListPage} />
             <Route exact path="/manga/:mangaId" component={MangaPage} />
             <Route
               exact

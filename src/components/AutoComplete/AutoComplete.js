@@ -99,7 +99,7 @@ const AutoComplete = () => {
           handler={() => getLits({ variables: { param } })}
         />
       )}
-      {loading && <Loader />}
+      {loading && <Loader right="1rem" />}
       {!!list.length && toggleDropdown && autoComleteDropdown}
     </div>
   );
