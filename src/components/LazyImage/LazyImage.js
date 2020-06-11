@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+
 import loading from "./loading.gif";
 
 const LazyImage = ({ src, alt, className }) => {
@@ -7,8 +8,8 @@ const LazyImage = ({ src, alt, className }) => {
 
   useEffect(() => {
     let observer;
-    let didCancel = false;
     let current;
+    let didCancel = false;
 
     if (imageRef.current) {
       current = imageRef.current;

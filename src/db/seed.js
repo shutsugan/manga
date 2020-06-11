@@ -1,7 +1,7 @@
 import { CronJob } from "cron";
 import axios from "axios";
 
-import Manga, { createManga } from "./models/manga";
+import { createManga } from "./models/manga";
 
 const seed = () => {
   const task = new CronJob("0 0 0 * * *", () => {

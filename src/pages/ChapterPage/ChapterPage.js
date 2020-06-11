@@ -71,57 +71,61 @@ const ChapterPage = () => {
   if (error || manga.error)
     return <ErrorPage message="Chapter page failed loading" />;
 
+  const chapterNav = (
+    <div className="chapter-nav w-full flex item-center justify-between">
+      {loading || manga.loading ? (
+        <div className="w-full flex center">
+          <ShimmerLoader height="20px" width="96%" />
+        </div>
+      ) : (
+        <>
+          {prevChapter?.chapterId ? (
+            <a
+              href={`/manga/${alias}/chapter/${prevChapter.chapterId}`}
+              className="chapter-prev flex item-center"
+            >
+              <img
+                className="chapter-icon"
+                src={leftArrow}
+                alt="prev chapter"
+              />
+              <span className="chapter-name">
+                {prevChapter?.chapterTitle || "Previous chapter"}
+              </span>
+            </a>
+          ) : (
+            <div />
+          )}
+          <a
+            href={`/manga/${manga.data?.mangaByAlias?.mangaId}`}
+            className="chapter-back"
+          >
+            Back To List
+          </a>
+          {nextChapter?.chapterId && (
+            <a
+              href={`/manga/${alias}/chapter/${nextChapter.chapterId}`}
+              className="chapter-next flex item-center"
+            >
+              <span className="chapter-name">
+                {nextChapter?.chapterTitle || "Next chapter"}
+              </span>
+              <img
+                className="chapter-icon"
+                src={rightArrow}
+                alt="next chapter"
+              />
+            </a>
+          )}
+        </>
+      )}
+    </div>
+  );
+
   return (
     <div className="chapter-page w-full h-full flex flex-col center">
       <div className="chapter-nav-wrapper w-full flex center fixed">
-        <div className="chapter-nav w-full flex item-center justify-between">
-          {loading || manga.loading ? (
-            <div className="w-full flex center">
-              <ShimmerLoader height="20px" width="96%" />
-            </div>
-          ) : (
-            <>
-              {prevChapter?.chapterId ? (
-                <a
-                  href={`/manga/${alias}/chapter/${prevChapter.chapterId}`}
-                  className="chapter-prev flex item-center"
-                >
-                  <img
-                    className="chapter-icon"
-                    src={leftArrow}
-                    alt="prev chapter"
-                  />
-                  <span className="chapter-name">
-                    {prevChapter?.chapterTitle || "Previous chapter"}
-                  </span>
-                </a>
-              ) : (
-                <div />
-              )}
-              <a
-                href={`/manga/${manga.data?.mangaByAlias?.mangaId}`}
-                className="chapter-back"
-              >
-                Back To List
-              </a>
-              {nextChapter?.chapterId && (
-                <a
-                  href={`/manga/${alias}/chapter/${nextChapter.chapterId}`}
-                  className="chapter-next flex item-center"
-                >
-                  <span className="chapter-name">
-                    {nextChapter?.chapterTitle || "Next chapter"}
-                  </span>
-                  <img
-                    className="chapter-icon"
-                    src={rightArrow}
-                    alt="next chapter"
-                  />
-                </a>
-              )}
-            </>
-          )}
-        </div>
+        {chapterNav}
       </div>
       <div className="chapter-list w-full flex flex-col center">
         {data?.chapter?.chapterImages.map(({ chapterImage }, index) => (

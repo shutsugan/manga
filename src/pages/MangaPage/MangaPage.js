@@ -15,9 +15,7 @@ const GET_MANGA = gql`
       description
       artist
       author
-      last_chapter_date
       chapters_len
-      created
       released
       aka
       categories

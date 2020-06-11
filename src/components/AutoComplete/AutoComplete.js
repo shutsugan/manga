@@ -31,6 +31,7 @@ const AutoComplete = () => {
   const [value, setValue] = useState("");
   const [toggleDropdown, setToggleDropdown] = useState(false);
   const [getLits, { data, loading, error }] = useLazyQuery(GET_LIST);
+
   const debouncedValue = useDebounce(value, 500);
   const param = { key: "title", value: debouncedValue, limit: 100 };
 
@@ -40,6 +41,7 @@ const AutoComplete = () => {
 
   const goToManga = (mangaId) => {
     history.push(`/manga/${mangaId}`);
+
     handleCloseDropdown();
     setValue("");
   };

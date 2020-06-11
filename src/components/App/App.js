@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "../Header";
+import ShimmerLoader from "../ShimmerLoader";
 
 const MangaPage = lazy(() => import("../../pages/MangaPage"));
 const ChapterPage = lazy(() => import("../../pages/ChapterPage"));
@@ -12,7 +13,7 @@ const App = () => {
     <div className="App">
       <Router>
         <Header />
-        <Suspense fallback={""}>
+        <Suspense fallback={<ShimmerLoader height={20} width="100%" />}>
           <Switch>
             <Route exact path="/" component={MangaListPage} />
             <Route exact path="/manga/:mangaId" component={MangaPage} />
