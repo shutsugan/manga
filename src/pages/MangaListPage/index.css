@@ -7,8 +7,9 @@
   max-width: 64rem;
   margin: auto;
   padding: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(10.75rem, 1fr));
+  display: grid;
   grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(10.75rem, 1fr));
 }
 
 .last-card {

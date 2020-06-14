@@ -58,10 +58,6 @@ img {
   height: calc(100vh - 4.1rem);
 }
 
-.grid {
-  display: grid;
-}
-
 .flex {
   display: flex;
 }

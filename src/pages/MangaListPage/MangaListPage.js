@@ -21,7 +21,6 @@ const GET_LIST_BY_LIMIT = gql`
         image
         hits
       }
-      count
     }
   }
 `;
@@ -59,7 +58,7 @@ const MangaListPage = () => {
   if (error) return <ErrorPage message="Manga list page failed loading" />;
 
   return (
-    <div className="list-page w-full h-full grid">
+    <div className="list-page w-full h-full">
       <div className="list-page-wrapper w-full h-full grid">
         {list.map((manga) => (
           <MangaCard key={manga.mangaId} manga={manga} />

@@ -6,9 +6,13 @@ export default {
     const option = key ? { [key]: reValue } : {};
 
     const count = await Manga.countDocuments(option);
-    const list = await Manga.find(option, null, { skip, limit }).sort({
-      hits: -1,
-      last_chapter_date: -1,
+    const list = await Manga.find(option, null, {
+      skip,
+      limit,
+      sort: {
+        hits: -1,
+        last_chapter_date: -1,
+      },
     });
 
     if (!list) throw new Error("List do not exits");

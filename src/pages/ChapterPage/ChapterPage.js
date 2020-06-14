@@ -122,20 +122,24 @@ const ChapterPage = () => {
     </div>
   );
 
+  const chaptersList = data?.chapter?.chapterImages;
+  const chaptersReversed = chaptersList && chaptersList.slice().reverse();
+
   return (
     <div className="chapter-page w-full h-full flex flex-col center">
       <div className="chapter-nav-wrapper w-full flex center fixed">
         {chapterNav}
       </div>
       <div className="chapter-list w-full flex flex-col center">
-        {data?.chapter?.chapterImages.map(({ chapterImage }, index) => (
-          <LazyImage
-            className="chapter-image"
-            src={`${IMG_BASE_URL}${chapterImage}`}
-            alt={`chapter ${++index}`}
-            key={chapterImage}
-          />
-        ))}
+        {chaptersReversed &&
+          chaptersReversed.map(({ chapterImage }, index) => (
+            <LazyImage
+              className="chapter-image"
+              src={`${IMG_BASE_URL}${chapterImage}`}
+              alt={`chapter ${++index}`}
+              key={chapterImage}
+            />
+          ))}
       </div>
     </div>
   );
