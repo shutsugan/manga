@@ -90,9 +90,7 @@ const MangaInfo = ({ manga, loading }) => {
       <div className="manga-info-wrapper w-full flex">
         <div className="manga-info-left">
           {type !== null && (
-            <a href={`/manga-by/type/0`} className="manga-type manga-badge">
-              {getMangaType(type)}
-            </a>
+            <span className="manga-type manga-badge">{getMangaType(type)}</span>
           )}
           <div className="manga-image">
             {image && (

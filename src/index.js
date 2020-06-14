@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 
 import App from "./components/App/App";
+import { registerServiceWorker } from "./serviceworker";
 
 import "./index.css";
 
@@ -24,3 +25,5 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById("root")
 );
+
+registerServiceWorker();
