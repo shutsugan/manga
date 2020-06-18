@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { hydrate, render } from "react-dom";
 import {
   ApolloProvider,
   ApolloClient,
@@ -17,13 +17,16 @@ const client = new ApolloClient({
   link: new HttpLink({ uri: "/.netlify/functions/graphql" }),
 });
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+const app = (
   <ApolloProvider client={client}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </ApolloProvider>,
-  document.getElementById("root")
+  </ApolloProvider>
 );
+
+if (rootElement.hasChildNodes()) hydrate(app, rootElement);
+else render(app, rootElement);
 
 registerServiceWorker();
