@@ -14,7 +14,9 @@ import "./index.css";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({ uri: "/.netlify/functions/graphql" }),
+  link: navigator.onLine
+    ? new HttpLink({ uri: "/.netlify/functions/graphql" })
+    : null,
 });
 
 const rootElement = document.getElementById("root");
